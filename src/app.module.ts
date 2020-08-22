@@ -1,17 +1,18 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { PortfolioService } from './portfolio/portfolio.service';
-import { PortfolioModule } from './portfolio/portfolio.module';
-
 import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppController } from './app.controller';
+import AppService from './app.service';
+import TaskModule from './tasks/tasks.module';
+import { typeOrmConfig } from './config/typeorm.config';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot(typeOrmConfig),
     MongooseModule.forRoot('mongodb://localhost/business'),
-    PortfolioModule],
+    TaskModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-}
+export default class AppModule {}
