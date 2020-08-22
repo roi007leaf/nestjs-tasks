@@ -10,8 +10,8 @@ module.exports = {
     'airbnb-base',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
     'prettier',
+    'prettier/@typescript-eslint',
   ],
   root: true,
   env: {
@@ -34,6 +34,7 @@ module.exports = {
       },
     ],
     'no-useless-constructor': 'off',
+    'import/prefer-default-export': 'off',
   },
   settings: {
     'import/resolver': {

@@ -1,6 +1,5 @@
-/* eslint-disable import/extensions */
 import { IsIn, IsNotEmpty, IsOptional } from 'class-validator';
-import { TaskStatus } from '../task.model';
+import { TaskStatus } from '../task-status.enum';
 
 export default class FilterTasksDto {
   @IsOptional()
