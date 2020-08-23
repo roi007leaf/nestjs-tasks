@@ -7,7 +7,6 @@ import AppModule from './app.module';
 async function bootstrap() {
   const logger = new Logger('bootstrap');
   const serverConfig = config.get('server');
-  logger.log(process.env.NODE_ENV);
   const { port } = process.env.PORT || serverConfig;
   const app = await NestFactory.create(AppModule);
 
