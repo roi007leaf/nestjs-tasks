@@ -16,32 +16,11 @@ export default class TasksService {
   ) {}
 
   async getTaskById(id: number, user: User): Promise<Task> {
-    const found = await this.taskRepository.findOne({
-      where: { id, userId: user.id },
-    });
-    if (!found) {
-      throw new NotFoundException(`Task With ID ${id} isn't found`);
-    }
-    delete found.userId;
-    return found;
+    return this.taskRepository.getTaskById(id, user);
   }
 
   async getTasks(filterDto: FilterTasksDto, user: User): Promise<Task[]> {
-    const { status, search } = filterDto;
-    const query = this.taskRepository.createQueryBuilder('task');
-    if (status) {
-      query.andWhere('task.status=:status', { status });
-    }
-
-    if (search) {
-      query.andWhere(
-        'task.title LIKE :search OR task.description LIKE :search',
-        { search: `%${search}%` },
-      );
-    }
-    query.where('task.userId = :userId', { userId: user.id });
-    const tasks = await query.getMany();
-    return tasks;
+    return this.taskRepository.getTasks(filterDto, user);
   }
 
   async createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {
@@ -55,14 +34,11 @@ export default class TasksService {
     }
   }
 
-  async updateTaskTypeById(
+  async updateTaskStatusById(
     id: number,
     status: TaskStatus,
     user: User,
   ): Promise<Task> {
-    const task = await this.getTaskById(id, user);
-    task.status = status;
-    await task.save();
-    return task;
+    return this.taskRepository.updateTaskStatusById(id, status, user);
   }
 }
