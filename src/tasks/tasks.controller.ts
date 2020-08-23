@@ -44,7 +44,7 @@ export default class TasksController {
     return this.tasksService.getTasks(filterDto, user);
   }
 
-  @Post('/createTask')
+  @Post('/')
   @UsePipes(ValidationPipe)
   createTask(
     @Body() createTaskDto: CreateTaskDto,
