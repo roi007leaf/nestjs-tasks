@@ -1,14 +1,15 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import TaskModule from './tasks/tasks.module';
+
+import { AuthModule } from './auth/auth.module';
 import { typeOrmConfig } from './config/typeorm.config';
+import TaskModule from './tasks/tasks.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    MongooseModule.forRoot('mongodb://localhost/business'),
     TaskModule,
+    AuthModule,
   ],
 })
 export default class AppModule {}

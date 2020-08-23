@@ -1,7 +1,7 @@
 import { BadRequestException, PipeTransform } from '@nestjs/common';
 import { TaskStatus } from '../task-status.enum';
 
-export default class TaskTypeValidationPipe implements PipeTransform {
+export default class TaskStatusValidationPipe implements PipeTransform {
   readonly ACCEPTED_STATUS = [
     TaskStatus.OPEN,
     TaskStatus.IN_PROGRESS,
@@ -9,9 +9,8 @@ export default class TaskTypeValidationPipe implements PipeTransform {
   ];
 
   transform(value: string): string {
-    const lowerCasedValue = value.toLowerCase();
-    if (!this.isTypeValid(lowerCasedValue)) {
-      throw new BadRequestException(`${lowerCasedValue} is an invalid type`);
+    if (!this.isTypeValid(value)) {
+      throw new BadRequestException(`${value} is an invalid type`);
     }
     return value;
   }

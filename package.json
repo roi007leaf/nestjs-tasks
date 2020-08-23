@@ -29,6 +29,7 @@
     "@types/mongodb": "^3.5.25",
     "@types/mongoose": "^5.7.31",
     "@types/uuid": "^8.0.0",
+    "bcrypt": "^5.0.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "mongodb": "^3.5.9",
